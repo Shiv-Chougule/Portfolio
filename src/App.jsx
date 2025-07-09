@@ -8,7 +8,7 @@ import Contact from './components/Contact';
 
 function App() {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
+    <div className="min-h-screen overflow-x-hidden min-w-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
       <Navigation />
       <Hero />
       <About />

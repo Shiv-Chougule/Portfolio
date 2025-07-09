@@ -1,11 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Home, User, Code, Briefcase, Mail } from 'lucide-react';
 
 const Navigation = () => {
+  //const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const menuRef = useRef(null)
+  
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (isOpen && menuRef.current && !menuRef.current.contains(event.target)) {
+          setIsOpen(false)
+        }
+      }
+    
+      document.addEventListener('mousedown', handleClickOutside)
+    
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [isOpen])
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -32,7 +47,7 @@ const Navigation = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`overflow-x-hidden fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'bg-gray-900/80 backdrop-blur-md' : 'bg-transparent'
       }`}
     >
@@ -79,6 +94,7 @@ const Navigation = () => {
       {/* Mobile Navigation */}
       {isOpen && (
         <motion.div
+          ref={menuRef}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}

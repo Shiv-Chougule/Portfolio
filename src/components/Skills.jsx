@@ -34,16 +34,46 @@ const Skills = () => {
         { name: 'Git/GitHub', level: 40 },
         { name: 'Webpack', level: 30 },
         { name: 'Vite', level: 30 },
-        { name: 'NPM/Yarn', level: 30 },
+        { name: 'NPM', level: 30 },
         { name: 'VS Code', level: 90 },
-        { name: 'Figma', level: 30 },
+        { name: 'Postman', level: 30 },
       ],
     },
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-20 overflow-x-hidden relative min-h-screen">
+      {/* Background Image with Parallax Effect */}
+            <motion.div 
+              className="absolute inset-0 z-0"
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+            >
+              <>
+                {/* Desktop / Tablet Background */}
+                <img
+                 src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80"
+                  alt="Men's Fashion - Desktop"
+                  className="hidden sm:block w-full h-full object-cover"
+                />
+      
+                {/* Mobile Background - vertical fit */}
+                <img
+                 src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80"
+                  alt="Men's Fashion - Mobile"
+                  className="block sm:hidden w-full h-full object-cover object-center"
+                />
+              </>
+      
+              {/* <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+              /> */}
+            </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
