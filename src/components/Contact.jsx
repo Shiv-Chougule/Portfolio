@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,25 +12,63 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({
+    success: false,
+    message: '',
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    });
-    setIsSubmitting(false);
-    
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
+    try {
+      // Replace these with your actual EmailJS service ID, template ID, and public key
+      const serviceId = 'service_7ki97t6';
+      const templateId = 'template_9eovngr';
+      const publicKey = 'fls06M6wOVK5-UbX3';
+      
+      // Send form data using EmailJS
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        publicKey
+      );
+
+      // Reset form on success
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      
+      setSubmitStatus({
+        success: true,
+        message: 'Your message has been sent successfully!',
+      });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setSubmitStatus({
+        success: false,
+        message: 'Failed to send message. Please try again later.',
+      });
+    } finally {
+      setIsSubmitting(false);
+      
+      // Clear status message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus({
+          success: false,
+          message: '',
+        });
+      }, 5000);
+    }
   };
 
   const handleChange = (e) => {
@@ -55,7 +94,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      value: 'Your City, Country',
+      value: 'Nippani, Karnataka',
       href: '#',
     },
     {
@@ -77,57 +116,35 @@ const Contact = () => {
       id="contact"
       className="w-full relative pb-10 bg-gray-900 overflow-x-hidden"
     >
-       <motion.div 
-                    className="absolute inset-0 z-0"
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                  >
-                    <>
-                      {/* Desktop / Tablet Background */}
-                      <img
-                       src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80"
-                        alt="Men's Fashion - Desktop"
-                        className="hidden sm:block w-full h-full object-cover"
-                      />
-            
-                      {/* Mobile Background - vertical fit */}
-                      <img
-                       src="https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&h=1200&dpr=2"
-                        alt="Men's Fashion - Mobile"
-                        className="block sm:hidden w-full h-full object-cover object-center"
-                      />
-                    </>
-            
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 1 }}
-                    />
-                  </motion.div>
-      {/* Desktop Background Image */}
-      {/* <div
-        className="hidden lg:block absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat"
-        }}
-      /> */}
-      {/* Mobile Background Image */}
-      {/* <div
-        className="lg:hidden absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&h=1200&dpr=2')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat"
-        }}
-      /> */}
-      {/* Dark overlay for readability */}
-      {/* <div className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div> */}
+      <motion.div 
+        className="absolute inset-0 z-0"
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+      >
+        <>
+          {/* Desktop / Tablet Background */}
+          <img
+            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80"
+            alt="Men's Fashion - Desktop"
+            className="hidden sm:block w-full h-full object-cover"
+          />
+    
+          {/* Mobile Background - vertical fit */}
+          <img
+            src="https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&h=1200&dpr=2"
+            alt="Men's Fashion - Mobile"
+            className="block sm:hidden w-full h-full object-cover object-center"
+          />
+        </>
+    
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
+      </motion.div>
 
       {/* Content */}
       <div className="relative mx-auto">
@@ -159,10 +176,20 @@ const Contact = () => {
           >
             <div className="mx-2 max-w-2xl bg-gray-800/50 border border-gray-400/50 backdrop-blur-sm rounded-2xl py-8 px-2 sm:px-8 ">
               <h3 className="text-lg sm:text-2xl font-bold text-white mb-6 flex items-center gap-2">
-              <Send size={24} className="hidden sm:inline-block" />
-              <Send size={18} className="sm:hidden" />
+                <Send size={24} className="hidden sm:inline-block" />
+                <Send size={18} className="sm:hidden" />
                 Send me a message
               </h3>
+
+              {submitStatus.message && (
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mb-6 p-4 rounded-lg ${submitStatus.success ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}
+                >
+                  {submitStatus.message}
+                </motion.div>
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -278,6 +305,8 @@ const Contact = () => {
                     href={info.href}
                     whileHover={{ scale: 1.02, x: 5 }}
                     className="flex items-center gap-4 p-4 bg-gray-700/30 rounded-lg hover:bg-gray-700/50 transition-all duration-200"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <div className="w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                       <info.icon size={20} className="hidden sm:inline-block text-white" />
@@ -310,7 +339,6 @@ const Contact = () => {
         </div>
       </div>
     </section>
-
   );
 };
 

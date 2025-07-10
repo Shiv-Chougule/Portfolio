@@ -177,9 +177,9 @@ const Skills = () => {
                 transition={{ duration: 0.1, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.1, y: -5 }}
-                className={`bg-gradient-to-r ${tech.color} backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 cursor-pointer`}
+                className={`bg-gradient-to-r ${tech.color} backdrop-blur-sm text-sm sm:text-lg rounded-md sm:rounded-xl px-2 py-1 sm:px-6 sm:py-3 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 cursor-pointer`}
               >
-                <span className="text-white font-medium">{tech.name}</span>
+                <span className="text-white font-small sm:font-medium">{tech.name}</span>
               </motion.div>
             ))}
           </div>
