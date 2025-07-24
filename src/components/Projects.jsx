@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, Code, Database, Zap, Star } from 'lucide-react';
+import portfolioPic from '../assets/portfolioPic.png';
 
 const Projects = () => {
   const projects = [
+    // {
+    //   id: 1,
+    //   title: 'Invoice Generator',
+    //   description: 'A full-stack website where users can generate their Invoices, manage sales and customers',
+    //   image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
+    //   technologies: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Tailwind CSS'],
+    //   category: 'Full Stack',
+    //   github: '#',
+    //   live: '#',
+    //   featured: true,
+    // },
     {
       id: 1,
-      title: 'Invoice Generator',
-      description: 'A full-stack website where users can generate their Invoices, manage sales and customers',
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Tailwind CSS'],
-      category: 'Full Stack',
-      github: '#',
-      live: '#',
-      featured: true,
-    },
-    {
-      id: 5,
       title: 'Portfolio Website',
       description: 'A modern, responsive portfolio website with smooth animations and interactive elements. Built with React and Framer Motion.',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: portfolioPic,
       technologies: ['React', 'Framer Motion', 'Tailwind CSS', 'JavaScript'],
       category: 'Frontend',
       github: '#',
@@ -67,7 +68,7 @@ const Projects = () => {
         </motion.div>
 
         {/* Category Filter */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -80,7 +81,7 @@ const Projects = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
+              className={`px-2 py-1 sm:px-6 sm:py-3 rounded-lg sm:rounded-full font-small sm:font-medium transition-all duration-300 flex items-center gap-2 ${
                 selectedCategory === category
                   ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
                   : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 hover:text-white'
@@ -90,7 +91,7 @@ const Projects = () => {
               {category}
             </motion.button>
           ))}
-        </motion.div>
+        </motion.div> */}
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

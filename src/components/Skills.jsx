@@ -32,7 +32,7 @@ const Skills = () => {
       color: 'from-purple-500 to-pink-500',
       skills: [
         { name: 'Git/GitHub', level: 40 },
-        { name: 'Webpack', level: 30 },
+        { name: 'Linux', level: 30 },
         { name: 'Vite', level: 30 },
         { name: 'NPM', level: 30 },
         { name: 'VS Code', level: 90 },

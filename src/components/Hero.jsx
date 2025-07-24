@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
+import pic from '../assets/pic.jpg'; // or '../assets/pic.jpg'
+
 
 const Hero = () => {
   const scrollToSection = (id) => {
@@ -44,30 +46,7 @@ const Hero = () => {
                 transition={{ duration: 1 }}
               />
             </motion.div>
-      {/* Background image with overlay */}
-      {/* <div
-        className="hidden md:block absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')",
-        }}
-      /> */}
-      {/* <div
-      className="md:hidden absolute inset-0 bg-cover bg-center"
-      style={{
-        backgroundImage: "url('https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg')",
-      }}
-    /> */}
-      {/* Dark overlay to make text more readable */}
-      {/* <div className="absolute inset-0 bg-black/60" /> */}
-
-      {/* Background grid overlay */}
-      {/* <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      /> */}
+      
 
       {/* Main layout */}
       <div className="flex flex-col-reverse md:flex-row w-full min-h-screen relative z-10 text-white max-w-7xl mx-auto overflow-x-hidden">
@@ -120,9 +99,10 @@ const Hero = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 py-3 sm:px-8 sm:py-3 rounded-full font-semibold flex items-center gap-2"
+                  className=" border-1 sm:border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 py-3 sm:px-8 sm:py-3 rounded-full font-small sm:font-semibold flex items-center gap-2"
                 >
-                  <Download size={20} />
+                  <Download size={16} className='sm:hidden' />
+                  <Download size={20} className='hidden sm:inline-block' />
                   Download Resume
                 </motion.button>
               </motion.div>
@@ -153,23 +133,24 @@ const Hero = () => {
             </motion.div>
           </div>
         </div>
-
+        
         {/* Right Column - Profile Image */}
-        <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12 relative">
+        <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12 relative">
+        
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative z-10"
+            className="relative z-10 flex flex-col items-center"
           >
-           
+          
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               className="absolute -inset-3 sm:-inset-4 md:-inset-6 lg:-inset-8 rounded-full border-2 border-dashed border-blue-400/30"
             />
 
-           
+          
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -189,7 +170,7 @@ const Hero = () => {
               className="absolute -inset-1 sm:-inset-2 md:-inset-3 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-600/20 blur-md"
             />
 
-           
+          
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -198,45 +179,24 @@ const Hero = () => {
               
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/50 to-purple-600/50 blur-sm" />
 
-             
+            
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="rounded-full overflow-hidden w-full h-full bg-gray-900/80 backdrop-blur-sm relative z-10 border-4 border-gray-800/50"
               >
                 
-                <div className="w-full h-full bg-gradient-to-br from-gray-700/80 to-gray-900/80 backdrop-blur-sm flex items-center justify-center">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="text-center"
-                  >
-                    <motion.div
-                      animate={{ rotate: [0, 10, -10, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"
-                    >
-                      <svg
-                        className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                        />
-                      </svg>
-                    </motion.div>
-                    <p className="text-gray-300 text-xs sm:text-sm">Profile Photo</p>
-                  </motion.div>
+                <div className="w-full h-full place-center bg-gradient-to-br from-gray-700/80 to-gray-900/80 backdrop-blur-sm flex items-center justify-center">
+                <motion.img
+                  src={pic}
+                  alt="Profile"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="w-full h-full object-cover"
+                />
                 </div>
               </motion.div>
-            </motion.div>
-
-            
+            </motion.div>            
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -250,6 +210,36 @@ const Hero = () => {
               />
             </motion.div>
           </motion.div>
+          {/* Name with animation */}
+          <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="mt-12 text-center"
+            >
+              <motion.h1
+                className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400"
+                whileHover={{ scale: 1.05 }}
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  backgroundPosition: {
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "linear",
+                  },
+                }}
+              >
+                Shivaling Chougule
+              </motion.h1>
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ delay: 1.2, duration: 1 }}
+                className="h-1 mt-2 bg-gradient-to-r from-blue-500/0 via-purple-500 to-emerald-500/0 rounded-full"
+              />
+            </motion.div>
         </div>
       </div>
     </section>
