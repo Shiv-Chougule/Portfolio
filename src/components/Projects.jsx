@@ -23,13 +23,13 @@ const Projects = () => {
       image: portfolioPic,
       technologies: ['React', 'Framer Motion', 'Tailwind CSS', 'JavaScript'],
       category: 'Frontend',
-      github: '#',
-      live: '#',
+      github: 'https://github.com/Shiv-Chougule/Portfolio',
+      live: 'https://shiv-chougule-portfolio.netlify.app/',
       featured: false,
     }
   ];
 
-  const categories = ['All', 'Frontend', 'Backend', 'Full Stack'];
+  //const categories = ['All', 'Frontend', 'Backend', 'Full Stack'];
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredProjects = selectedCategory === 'All' 
@@ -186,7 +186,7 @@ const Projects = () => {
             Want to see more of my work?
           </p>
           <motion.a
-            href="#"
+            href="https://github.com/Shiv-Chougule?tab=repositories"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full text-sm sm:font-semibold transition-all duration-200"
