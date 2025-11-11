@@ -96,7 +96,7 @@ const Hero = () => {
                   <ArrowDown size={20} />
                 </motion.button>
 
-                <motion.button
+                {/* <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className=" border-1 sm:border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 py-3 sm:px-8 sm:py-3 rounded-full font-small sm:font-semibold flex items-center gap-2"
@@ -104,7 +104,7 @@ const Hero = () => {
                   <Download size={16} className='sm:hidden' />
                   <Download size={20} className='hidden sm:inline-block' />
                   Download Resume
-                </motion.button>
+                </motion.button> */}
               </motion.div>
 
               <motion.div
